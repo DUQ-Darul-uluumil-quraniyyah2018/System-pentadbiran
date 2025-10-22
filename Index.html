@@ -4914,7 +4914,7 @@ CREATE INDEX IF NOT EXISTS idx_pelajar_nama ON pelajar_records(nama_penuh);
                 statusText.textContent = 'Tiada sambungan';
             }
             
-            urlDisplay.textContent = systemSettings.supabaseUrl || SUPABASE_URL;
+            urlDisplay.textContent = systemSettings.supabaseUrl || SUPABASE_URL; ;'https://onkmfvyhzikgkisfeuuc.supabase.co,;
             lastSyncDisplay.textContent = systemSettings.lastSync ? 
                 new Date(systemSettings.lastSync).toLocaleString('ms-MY') : 'Belum pernah';
             queueCountDisplay.textContent = syncQueue.length;
