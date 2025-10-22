@@ -4971,15 +4971,33 @@ CREATE INDEX IF NOT EXISTS idx_pelajar_nama ON pelajar_records(nama_penuh);
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'991f9287047186be',t:'MTc2MTAzNzMwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 <!-- START: Supabase storage + settings integration (ADDED) -->
-<script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+<<!-- === Supabase Integration Universal === -->
+<script>
+(async () => {
+  // Cuba import ESM (untuk Netlify / GitHub)
+  let createClient;
+  try {
+    const m = await import("https://esm.sh/@supabase/supabase-js@2");
+    createClient = m.createClient;
+    console.log("Supabase loaded via ESM");
+  } catch (e) {
+    console.warn("Fallback ke CDN biasa", e);
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+    await new Promise((resolve) => (script.onload = resolve));
+    createClient = window.supabase.createClient;
+  }
 
-  const SUPABASE_URL = https:"https://onkmfvyhzikgkisfeuuc.supabase.co'
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ua21mdnloemlrZ2tpc2ZldXVjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEwODIxNjYsImV4cCI6MjA3NjY1ODE2Nn0.WxtGk1_8-YNWuW7_5oXDgum-KeqdQ0HN_6kST9PP7Zk';
-  const BUCKET = 'fail_web';
-  const FOLDER = 'tetapan';
+  const SUPABASE_URL = "https://onkmfvyhzikgkisfeuuc.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ua21mdnloemlrZ2tpc2ZldXVjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEwODIxNjYsImV4cCI6MjA3NjY1ODE2Nn0.WxtGk1_8-YNWuW7_5oXDgum-KeqdQ0HN_6kST9PP7Zk";
+  const BUCKET = "fail_web";
+  const FOLDER = "tetapan";
 
-  const supabase = createClient (SUPABASE_URL, SUPABASE_KEY);@supabese/supabase-js'
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+  window.supabase = supabase; // supaya global boleh guna
+  console.log("✅ Supabase initialized");
+})();
+</script>  
 
   function notify(msg, type='info') {
     const container = document.getElementById('notification-container') || document.body;
