@@ -5174,18 +5174,16 @@ CREATE INDEX IF NOT EXISTS idx_pelajar_nama ON pelajar_records(nama_penuh);
 <!-- END: Supabase storage + settings integration (ADDED) -->
 
 
-<!-- === Supabase Integration: AutoSave, AutoSync, Display & Upload === -->
-<script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/esm.sh@supabase/supabase-js@2
+<!-- === Supabase Integration: Vercel Safe Version (autosave + display) === -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://onkmfvyhzikgkisfeuuc.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ua21mdnloemlrZ2tpc2ZldXVjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEwODIxNjYsImV4cCI6MjA3NjY1ODE2Nn0.WxtGk1_8-YNWuW7_5oXDgum-KeqdQ0HN_6kST9PP7Zk";
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-/* ================= CONFIG ================= */
-const SUPABASE_URL = "https://onkmfvyhzikgkisfeuuc.supabase.co";
+  console.log("✅ Supabase connected (Autosave + Display OK)");
+</script> 
 
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ua21mdnloemlrZ2tpc2ZldXVjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEwODIxNjYsImV4cCI6MjA3NjY1ODE2Nn0.WxtGk1_8-YNWuW7_5oXDgum-KeqdQ0HN_6kST9PP7Zk";
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
-/* ================= UTILS ================= */
 function debounce(fn, wait = 900) {
   let t;
   return (...args) => {
@@ -5454,7 +5452,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     await muatSemuaData();
     showToast("Sinkron siap — data dari Supabase dimuatkan");
   } catch (e) {
-    console.error("Init error", e);
+    con```sole.error("Init error", e);
     showToast("Init Supabase gagal (lihat console)", true);
   }
 });
