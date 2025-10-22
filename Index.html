@@ -4979,7 +4979,7 @@ CREATE INDEX IF NOT EXISTS idx_pelajar_nama ON pelajar_records(nama_penuh);
   const BUCKET = 'fail_web';
   const FOLDER = 'tetapan';
 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);@supabese/supabase-js'
+  const supabase = createClient (SUPABASE_URL, SUPABASE_KEY);@supabese/supabase-js'
 
   function notify(msg, type='info') {
     const container = document.getElementById('notification-container') || document.body;
@@ -5158,11 +5158,13 @@ CREATE INDEX IF NOT EXISTS idx_pelajar_nama ON pelajar_records(nama_penuh);
 
 <!-- === Supabase Integration: AutoSave, AutoSync, Display & Upload === -->
 <script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+import { createClient } from "https://cdn.jsdelivr.net/npm/esm.sh@supabase/supabase-js@2
 
 /* ================= CONFIG ================= */
 const SUPABASE_URL = "https://onkmfvyhzikgkisfeuuc.supabase.co";
+
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ua21mdnloemlrZ2tpc2ZldXVjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEwODIxNjYsImV4cCI6MjA3NjY1ODE2Nn0.WxtGk1_8-YNWuW7_5oXDgum-KeqdQ0HN_6kST9PP7Zk";
+
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /* ================= UTILS ================= */
